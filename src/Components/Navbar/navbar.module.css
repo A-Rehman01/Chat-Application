@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.Container{
+    background-color: #8E44AD;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    color: white;
+    font-size: 20px;
+}
+
+.Appname{
+    font-family: 'Lobster', cursive;
+    font-weight: bold;
+}
+.UserName{
+    font-family: 'Noto Serif', serif;
+}
+.Auth{
+    font-family: 'Noto Serif', serif;
+}

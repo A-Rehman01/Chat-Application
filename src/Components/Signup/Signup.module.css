@@ -1,0 +1,29 @@
+.password,.email{
+    width: 100% !important;
+    margin-top: 20px !important;
+}
+.lname,.fname{
+    width: 49% !important;
+}
+.lname{
+    margin-left: 1% !important;
+}
+.fname{
+    margin-right: 1% !important;
+}
+.Heading{
+    font-family: 'Noto Serif', serif;
+    font-size: 21px;
+    margin-bottom: 20px;
+    color: #8E44AD;
+}
+.Signbtn{
+    margin-top: 20px !important;
+    background-color: #8E44AD !important;
+    color: white !important;
+}
+.signupinfo{
+    margin-top: 10px;
+    text-align: left;
+    font-weight: bold;
+}
