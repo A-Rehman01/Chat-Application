@@ -3,21 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './Components/App/App';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter as  Router} from 'react-router-dom'
-import {Config} from './Services/FirebaseConfig'
-import * as firebase from 'firebase';
-import "firebase/auth";
-import "firebase/database";
+import { BrowserRouter as Router } from 'react-router-dom'
+import { firebaseConfig } from './Services/FirebaseConfig'
+import { Provider } from 'react-redux';
+import { ChatStore } from './Redux/ChatStore'
 
 // Initialize Firebase
-firebase.initializeApp(Config);
+firebaseConfig()
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={ChatStore} >
     <Router>
-    <App />
+      <App />
     </Router>
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import {Link,useNavigate} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import style from './Signin.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -27,15 +27,16 @@ export const SignIn = () => {
     const classes = useStyles();
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
-    const navigate = useNavigate();
-    
+    // const navigate = useNavigate();
+
     let HandleForm = (e) => {
         e.preventDefault();
         console.log('HandleForm Running...')
-        console.log(Email, Password)
+        // console.log(Email, Password)
         // navigate('/',{replace:true})
     }
-    
+
+
     return (
         <div className={classes.root}>
             <Grid item xs={12} sm={4}>

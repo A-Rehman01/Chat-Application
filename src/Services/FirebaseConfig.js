@@ -1,4 +1,6 @@
-export  function Config(){
+import * as firebase from 'firebase';
+
+export  function firebaseConfig(){
     var firebaseConfig = {
         apiKey: "AIzaSyBYwrF884Pmzg7NqO2EAKBBGZvQdUxu37Y",
         authDomain: "chat-app-react-99f30.firebaseapp.com",
@@ -9,6 +11,7 @@ export  function Config(){
         appId: "1:744226057146:web:e9f2ee4d54bebfc0a90b83",
         measurementId: "G-BT6C00028D"
     };
-    return firebaseConfig;
+    
+    return firebase.initializeApp(firebaseConfig);
 }
 

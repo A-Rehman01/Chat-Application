@@ -6,7 +6,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { InitialData,chatData } from '../../Redux/ChatSlice'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,10 +33,22 @@ export const Signup = () => {
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
 
+    const dispatch = useDispatch();
+    
+    var data = useSelector(chatData)
+    console.log(data)
+    
     function HandleForm(e) {
         e.preventDefault();
         console.log('HandleForm  Running.....')
         console.log(Fname, Lname, Email, Password)
+        let user = {
+            fname: Fname,
+            lname: Lname,
+            email: Email,
+            password: Password
+        }
+        dispatch(InitialData(user))
     }
 
     return (
@@ -85,7 +98,7 @@ export const Signup = () => {
                             id="password"
                             label="Password"
                             variant="outlined" />
-
+                        <p className={style.error}>{data.error}</p>
                         <p className={style.signupinfo}>Already an Account <Link to='/signin' style={{ color: 'blue' }}> Signin </Link></p>
 
                         <Button
