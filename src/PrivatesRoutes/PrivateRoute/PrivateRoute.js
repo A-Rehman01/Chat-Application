@@ -1,22 +1,25 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, useNavigate } from 'react-router-dom'
 
 export const PrivateRoute = ({ Element, path }) => {
     const navigate = useNavigate();
-
+    const [state, setstate] = useState();
     const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
     useEffect(() => {
         function check() {
-            return (
-                <Route path={path} element={user ? navigate('/') : navigate('/signup')} />
-            )
+            if (user) {
+                setstate(Element)
+            }
+
+            else {
+                setstate(navigate('/signin'))
+            }
         }
         check()
-    }, [2])
+    }, [user])
 
     return (
-        <div>
-        </div>
+        <Route path={path} element={state} />
     )
 
 }

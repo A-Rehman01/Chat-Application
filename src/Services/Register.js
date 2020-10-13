@@ -1,5 +1,4 @@
 import { auth, firestore } from 'firebase';
-import { useState } from 'react'
 
 export async function Register(user) {
     var feedback = {
@@ -19,7 +18,7 @@ export async function Register(user) {
             feedback.uid = data.user.uid
             feedback.email = user.email
             const currentUser = auth().currentUser;
-            var name = `${user.fname} ${user.lname}`
+            var name = `${user.fname}${user.lname}`
             currentUser.updateProfile({
                 displayName: name
             })
@@ -39,8 +38,8 @@ export async function Register(user) {
                                 uid: data.user.uid,
                                 email: user.email
                             }
-                            localStorage.setItem('user', JSON.stringify(loggedInUser))
-                            console.log('User Login Sucessfully')
+                            // localStorage.setItem('user', JSON.stringify(loggedInUser))
+                            console.log('Signup Sucessfully....')
                         })
                         .catch((error) => {
                             console.log(error)

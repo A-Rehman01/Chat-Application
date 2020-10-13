@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate,Route } from 'react-router-dom'
 import style from './Signin.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { useSelector, useDispatch } from 'react-redux'
+import { SignInInitialData, signinData } from '../../Reducer/signinSlice'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,15 +29,33 @@ export const SignIn = () => {
     const classes = useStyles();
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
-    // const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const data = useSelector(signinData);
+    const navigate = useNavigate();
 
     let HandleForm = (e) => {
         e.preventDefault();
         console.log('HandleForm Running...')
-        // console.log(Email, Password)
-        // navigate('/',{replace:true})
+        let user = {
+            email: Email,
+            password: Password
+        }
+        dispatch(SignInInitialData(user))
+        console.log("Signip => ", data)
     }
-
+    useEffect(() => {
+        function removefield() {
+            console.log(data.error)
+            if (data.authenticated === true && data.error === null && data.uid !== '') {
+                setPassword('');
+                setEmail('');
+                navigate('/',{replace:true})
+            }
+            console.log("SignIn => ", data)
+             
+        }
+        removefield();
+    }, [data.uid])
 
     return (
         <div className={classes.root}>
@@ -65,6 +85,9 @@ export const SignIn = () => {
                             label="Password"
                             variant="outlined" />
                         <br />
+                        <p className={style.error}>
+                            {data.error==='Please Signup first'? null : data.error}
+                            </p>
                         <p className={style.signupinfo}>If not an Account <Link to='/signup' style={{ color: 'blue' }}>   Signup </Link></p>
                         <Button
                             type='Submit'

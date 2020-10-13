@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import style from './Signup.module.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useSelector, useDispatch } from 'react-redux'
-import { InitialData,chatData } from '../../Redux/ChatSlice'
+import { InitialData, authData } from '../../Reducer/authSlice'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,10 +34,8 @@ export const Signup = () => {
     const [Password, setPassword] = useState('');
 
     const dispatch = useDispatch();
-    
-    var data = useSelector(chatData)
-    console.log(data)
-    
+
+    var data = useSelector(authData)
     function HandleForm(e) {
         e.preventDefault();
         console.log('HandleForm  Running.....')
@@ -49,8 +47,22 @@ export const Signup = () => {
             password: Password
         }
         dispatch(InitialData(user))
+        console.log("SignUp => ", data)
     }
 
+    useEffect(() => {
+        function removefield() {
+            console.log(data.error)
+            if (data.authenticated === true && data.error === null && data.uid !== '') {
+                setFname('');
+                setLname('');
+                setPassword('');
+                setEmail('');
+            }
+            console.log("SignUp => ", data)
+        }
+        removefield();
+    }, [data.uid])
     return (
         <div className={classes.root}>
             <Grid item xs={12} sm={4}>

@@ -4,7 +4,7 @@ import style from './home.module.css'
 export const Home = () => {
     return (
         <div>
-            Home Page
+            Home Paged
         </div>
     )
 }

@@ -18,3 +18,8 @@
     text-align: left;
     font-weight: bold;
 }
+.error{
+    margin-top: 10px;
+    text-align: left;
+    color: red;
+}

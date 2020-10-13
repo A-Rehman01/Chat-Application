@@ -11,8 +11,8 @@ export const InitialData = createAsyncThunk(
     }
 )
 
-export const ChatSlice = createSlice({
-    name: 'chat',
+export const AuthSlice = createSlice({
+    name: 'auth',
     initialState: {
         firstName: '',
         lastName: '',
@@ -20,7 +20,7 @@ export const ChatSlice = createSlice({
         authenticating: false,
         authenticated: false,
         error: null,
-        uid: ''
+        uid: '',
     },
     isloading: false,
     reducers: {
@@ -35,9 +35,8 @@ export const ChatSlice = createSlice({
     },
     extraReducers: {
         [InitialData.fulfilled]: (state, action) => {
-            console.log(action.payload.err)
             console.log('fullfild')
-            
+            console.log(action.payload)
             state.error = action.payload.err;
             if(state.error === null){
                 state.authenticated = true
@@ -62,18 +61,18 @@ export const ChatSlice = createSlice({
     }
 })
 
-export const { LoginRequest } = ChatSlice.actions;
+export const { LoginRequest } = AuthSlice.actions;
 
-export const chatData = (state) => {
+export const authData = (state) => {
     return ({
-        firstName: state.chat.firstName,
-        lastName: state.chat.lastName,
-        email: state.chat.email,
-        uid: state.chat.uid,
-        authenticating: state.chat.authenticating,
-        authenticated: state.chat.authenticated,
-        error: state.chat.error
+        firstName: state.auth.firstName,
+        lastName: state.auth.lastName,
+        email: state.auth.email,
+        uid: state.auth.uid,
+        authenticating: state.auth.authenticating,
+        authenticated: state.auth.authenticated,
+        error: state.auth.error,
     })
 }
 
-export default ChatSlice.reducer;
+export default AuthSlice.reducer;

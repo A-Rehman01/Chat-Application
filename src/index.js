@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { firebaseConfig } from './Services/FirebaseConfig'
 import { Provider } from 'react-redux';
-import { ChatStore } from './Redux/ChatStore'
+import { ChatStore } from './Store/ChatStore'
 
 // Initialize Firebase
 firebaseConfig()
