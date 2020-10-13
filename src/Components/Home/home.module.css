@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel:wght@700&display=swap');
+
+.container{
+    display: flex;
+    /* margin-top: 10px; */
+}
+.userlist{
+    width: 30%;
+}
+.message{
+    width: 70%;
+    
+}
+.imageandinput{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.inputdiv{
+    width: 90%;
+}
+.imagediv{
+    margin-top: 4px;
+    width: 5%;
+    margin-left: 5px;
+}
+.search{
+    width: 90%;
+    padding: 5px;
+    border: 2px solid #CCD1D1;
+    border-radius: 25px;    
+}
+.search:hover{
+    border: 2px solid #8E44AD;
+}
+.hrtag{
+    text-align: center;
+    margin: 8px 20px 8px 20px; 
+   background-color: red;
+   height: 1px;
+   background-color: #CCD1D1;
+ 
+}
+.vl {
+    height: 450px;
+    background-color: #CCD1D1;
+    width: 1px !important;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 70px;
+}
+.users{
+    display: flex;
+    /* justify-content: space-around; */
+}
+.UserImage{
+    border-radius: 50%;
+    width: 60px;
+    display: inline-block;
+    margin-left: 30px;
+    
+}
+.usersName{
+    margin-top: 20px;
+    margin-left: 35px;
+    font-family: 'Martel', serif;
+    color: gray;
+}
+.openchat{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.mymsg{
+    margin-right: 10px !important;
+    padding: 10px;
+    width: fit-content;
+    background-color: #D2B4DE !important;
+    position: relative;
+    left: 850px;
+    margin-bottom: 10px !important;
+
+}
+.mymsg:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid #D2B4DE;
+    border-top: px solid #D2B4DE;
+    border-bottom: 10px solid transparent;
+    right: 0px;
+    bottom: -8px;
+}
+.yourmsg{
+    margin-left: 10px;
+    padding: 10px;
+    background-color: #D2B4DE !important;
+    position: relative;
+    width: fit-content;
+    margin-top: 10px;
+}
+.yourmsg:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid #D2B4DE;
+    border-right: 10px solid transparent;
+    border-top: px solid #D2B4DE;
+    border-bottom: 10px solid transparent;
+    left: 0px;
+    bottom: -8px;
+  }  

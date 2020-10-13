@@ -7,7 +7,8 @@ export async function SiginIn(user) {
         uid: '',
         email: '',
         err: null,
-        onRefresh: false
+        onRefresh: false,
+        type: false
     };
    await auth().signInWithEmailAndPassword(user.email, user.password)
         .then((data) => {

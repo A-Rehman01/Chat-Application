@@ -1,20 +1,26 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { SiginIn } from '../Services/authSignIn'
+import { Logout } from '../Services/Logout'
 
 export const SignInInitialData = createAsyncThunk(
     'siginingetdatafromapi',
     async (data, thunkapi) => {
         console.log("Think data => ", data)
-        if (data.onRefresh){
+        if (data.onRefresh) {
             let response = data
             console.log("SiginIn Responese on refresh =>", response)
             return await response;
         }
-        else{
+        else if (data === 'Logout') {
+            let response = await Logout();
+            console.log("LogOut Responese =>", response)
+            return await response;
+        }
+        else {
             let response = await SiginIn(data)
             console.log("SiginIn Responese =>", response)
             return await response;
-        }        
+        }
     }
 )
 
@@ -34,21 +40,32 @@ export const SigninSlice = createSlice({
     },
     extraReducers: {
         [SignInInitialData.fulfilled]: (state, action) => {
-            console.log(action.payload.err)
             console.log('fullfild')
-            
-            state.error = action.payload.err;
-            if(state.error === null ){
-                state.authenticated = true
+            if (action.payload.type) {
+                console.log('logout...')
+                state.authenticating = false;
+                state.authenticated = false;
+                state.email = ''
+                state.firstName = '';
+                state.lastName = '';
+                state.uid = '';
             }
-            else{
-                state.authenticated = false
+            else {
+                console.log('Notlogout...')
+                state.error = action.payload.err;
+                if (state.error === null) {
+                    state.authenticated = true
+                }
+                else {
+                    state.authenticated = false
+                }
+                state.authenticating = false;
+                state.email = action.payload.email;
+                state.firstName = action.payload.firstName;
+                state.lastName = action.payload.lastName;
+                state.uid = action.payload.uid;
             }
-            state.authenticating = false;
-            state.email=action.payload.email;
-            state.firstName=action.payload.firstName;
-            state.lastName=action.payload.lastName;
-            state.uid = action.payload.uid;
+
         },
         [SignInInitialData.reject]: (state, action) => {
             console.log('API Rejected');
@@ -61,7 +78,7 @@ export const SigninSlice = createSlice({
     }
 })
 
-export const {  } = SigninSlice.actions;
+export const { } = SigninSlice.actions;
 
 export const signinData = (state) => {
     return ({

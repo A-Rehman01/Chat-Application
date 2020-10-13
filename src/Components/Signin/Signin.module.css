@@ -18,6 +18,11 @@
     text-align: left;
     font-weight: bold;
 }
+.loading{
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 80px !important;
+}
 .error{
     margin-top: 10px;
     text-align: left;

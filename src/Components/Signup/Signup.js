@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useSelector, useDispatch } from 'react-redux'
 import { InitialData, authData } from '../../Reducer/authSlice'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -63,6 +64,15 @@ export const Signup = () => {
         }
         removefield();
     }, [data.uid])
+
+    if(data.authenticating){
+        return(
+            <div className={style.loading}>
+            <CircularProgress style={{color: '#8E44AD',fontWeight:'bolder'}} />
+            </div>
+        )
+    }
+
     return (
         <div className={classes.root}>
             <Grid item xs={12} sm={4}>
