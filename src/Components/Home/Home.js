@@ -2,7 +2,10 @@ import React from 'react'
 import style from './home.module.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import SearchIcon from '@material-ui/icons/Search';
+import SendIcon from '@material-ui/icons/Send';
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(1),
@@ -11,10 +14,9 @@ const useStyles = makeStyles((theme) => ({
         whiteSpace: 'nowrap',
         width: '100%',
         display: 'flex',
-        justifyContent:  'center',
-        // border: '1px solid #D2B4DE',
-        // boxShadow: '2px 3px 3px #D2B4DE',
+        justifyContent: 'center',
         marginBottom: theme.spacing(1),
+        backgroundColor: 'rgb(243, 231, 243)',
     },
 }));
 
@@ -59,24 +61,56 @@ export const Home = () => {
                 <div className={style.vl}></div>
 
                 <div className={style.message}>
-                    <div className={style.openchat}>Ali</div>
+                       <Paper className={style.openchat}> Ali </Paper>
+                
 
-                    
-                    <div className={style.mymsg}>
-                        Hellow
-                    </div>
-                    
-                    <div className={style.mymsg}>
-                        Hellow
-                    </div>
-                    
-                    <div className={style.yourmsg}>
-                          Hellow
-                    </div>
-                    <div className={style.yourmsg}>
-                          Hellow
-                    </div>
+                        <div className={style.messagesection}>
+                            <div className={style.chatcontainer}>
+                                <div className={style.mymsg}>
+                                    <span>A message text</span>
+                                </div>
+                                <div className={style.mymsg}>
+                                    <span>A message text</span>
+                                </div>
+                                <div className={style.mymsg}>
+                                    <span>A message text</span>
+                                </div>
+                                <div className={style.yourmsg}>
+                                    <span>A message text A message text A message text A message text A message text A message text A message text A message text A message text A message text </span>
+                                </div>
+                                <div className={style.yourmsg}>
+                                    <span>A message text</span>
+                                </div>
+                                <div className={style.mymsg}>
+                                    <span>A message text</span>
+                                </div>
+                                <div className={style.mymsg}>
+                                    <span>A message text</span>
+                                </div>
+                                <div className={style.mymsg}>
+                                    <span>A message text</span>
+                                </div>
+                            </div>
+                        </div>
+            
+                    <form className={style.formdiv}>
+                        <TextareaAutosize
+                            className={style.textArea}
+                            rowsMax={3}
+                            aria-label="maximum height"
+                            placeholder="Enter..."
+                            defaultValue=''
+                        />
+                        <button
+                            className={style.btn}
+                            type='submit'
+                        >
+                            <SendIcon style={{ color: '#8E44AD' }} />
+                        </button>
+                    </form> 
+
                 </div>
+
             </div>
         </div>
     )

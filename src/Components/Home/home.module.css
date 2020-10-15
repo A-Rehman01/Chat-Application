@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Martel:wght@700&display=swap');
 
+body{
+    overflow: hidden;
+}
 .container{
     display: flex;
     /* margin-top: 10px; */
+    
 }
 .userlist{
     width: 30%;
+    background-color: rgb(243, 231, 243) !important;
 }
 .message{
     width: 70%;
@@ -28,9 +33,10 @@
     width: 90%;
     padding: 5px;
     border: 2px solid #CCD1D1;
-    border-radius: 25px;    
+    border-radius: 25px;   
+     
 }
-.search:hover{
+.search:hover,.textArea:hover{
     border: 2px solid #8E44AD;
 }
 .hrtag{
@@ -51,37 +57,62 @@
 }
 .users{
     display: flex;
-    /* justify-content: space-around; */
+}
+.users:hover > .usersName {
+    color: black;
+    font-weight: bolder !important;
 }
 .UserImage{
     border-radius: 50%;
     width: 60px;
     display: inline-block;
-    margin-left: 30px;
-    
+    margin-left: 30px;   
 }
 .usersName{
     margin-top: 20px;
-    margin-left: 35px;
+    margin-left: 25px;
     font-family: 'Martel', serif;
     color: gray;
 }
 .openchat{
     text-align: center;
-    margin-top: 10px;
     margin-bottom: 10px;
+    padding: 14px;
+    background-color: rgb(243, 231, 243) !important;
+    text-transform: uppercase;
 }
-.mymsg{
-    margin-right: 10px !important;
-    padding: 10px;
-    width: fit-content;
-    background-color: #D2B4DE !important;
-    position: relative;
-    left: 850px;
-    margin-bottom: 10px !important;
 
+.messagesection{
+    overflow :hidden;
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+    /* background-repeat: repeat; */
 }
-.mymsg:before {
+
+.chatcontainer{
+  height :385px;
+  /* background-color: tomato; */
+  overflow: auto;
+  transform :rotate(180deg);
+  direction :rtl;
+  padding: 10px 10px 10px 10px;
+ 
+}
+.mymsg
+{
+    transform: rotate(180deg);
+    direction: ltr;
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+.mymsg span{
+    background-color: #D2B4DE !important;  
+    padding: 10px;
+    max-width: 400px;
+    position: relative;
+}
+.mymsg span:before {
     content: "";
     width: 0px;
     height: 0px;
@@ -94,14 +125,21 @@
     bottom: -8px;
 }
 .yourmsg{
-    margin-left: 10px;
+    transform: rotate(180deg);
+    direction: ltr;
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-start;
+}    
+  
+.yourmsg span{
     padding: 10px;
+    max-width: 400px;
     background-color: #D2B4DE !important;
     position: relative;
-    width: fit-content;
-    margin-top: 10px;
+    
 }
-.yourmsg:before {
+.yourmsg span:before {
     content: "";
     width: 0px;
     height: 0px;
@@ -112,4 +150,29 @@
     border-bottom: 10px solid transparent;
     left: 0px;
     bottom: -8px;
-  }  
+}
+
+    
+
+.formdiv{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.textArea{
+    margin-top: 10px;
+    padding: 7px;
+    width: 95%;
+    border-radius: 20px;
+    font-family: 'Martel', serif;
+}  
+.textArea:focus{
+    border: none;
+}
+.btn{
+    border: none;
+    background-color: white;
+    width: 5%;
+    margin-top: 12px;
+}
+
