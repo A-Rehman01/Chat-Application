@@ -59,6 +59,7 @@ export const Signup = () => {
                 setLname('');
                 setPassword('');
                 setEmail('');
+                
             }
             console.log("SignUp => ", data)
         }

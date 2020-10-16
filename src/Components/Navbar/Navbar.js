@@ -6,6 +6,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useSelector, useDispatch } from 'react-redux'
 import { signinData, SignInInitialData } from '../../Reducer/signinSlice';
+import Logo from '../../Assests/Logo.png';
 
 
 
@@ -16,12 +17,21 @@ export const Navbar = () => {
     console.log("navbar  = > ", data);
     
     const ExitToApp = () => {
-        dispatch(SignInInitialData('Logout'))
+        const user = {
+            logout:'Logout',
+            uid: data.uid
+        }
+        dispatch(SignInInitialData(user))
     }
     
     return (
         <div className={style.Container}>
-            <div className={style.Appname}>< ChatIcon style={{ fontSize: '30px' }} /></div>
+            {/* <div className={style.Appname}>< ChatIcon style={{ fontSize: '34px' }} /></div> */}
+            <div className={style.Appname}>
+            chatApp  {/* <img src={Logo}  alt='Logo' width='200px' /> */}
+            </div>
+            
+
 
             <div className={style.UserName}>
                 {

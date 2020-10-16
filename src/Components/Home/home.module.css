@@ -10,7 +10,12 @@ body{
 }
 .userlist{
     width: 30%;
-    background-color: rgb(243, 231, 243) !important;
+   
+}
+
+.userContainer{
+    overflow-y: auto;
+    height: 400px;
 }
 .message{
     width: 70%;
@@ -57,20 +62,38 @@ body{
 }
 .users{
     display: flex;
+    justify-content: space-around;
+    padding-left: 15px;
+    padding-right: 15px;
 }
-.users:hover > .usersName {
+.mapdiv:hover,.hrtag:hover  {
+    background-color: rgb(243, 231, 243) !important;
+   
+}
+.users:hover > .usersName{
     color: black;
     font-weight: bolder !important;
+    
 }
 .UserImage{
+
     border-radius: 50%;
     width: 60px;
-    display: inline-block;
-    margin-left: 30px;   
+}
+.usersonline{
+    margin-top: 20px;
+    font-family: 'Martel', serif;
+    color: gray;
+}
+.usersonline span{
+    height: 15px;
+  width: 15px;
+  background-color: lawngreen;
+  border-radius: 50%;
+  display: inline-block;
 }
 .usersName{
     margin-top: 20px;
-    margin-left: 25px;
     font-family: 'Martel', serif;
     color: gray;
 }
@@ -84,9 +107,7 @@ body{
 
 .messagesection{
     overflow :hidden;
-    /* background-repeat: no-repeat;
-    background-size: cover; */
-    /* background-repeat: repeat; */
+    background-image: url('https://github.com/A-Rehman01/red_queen_animation_wappi/blob/master/src/Assests/background.jpeg?raw=true');
 }
 
 .chatcontainer{

@@ -11,8 +11,8 @@ export const SignInInitialData = createAsyncThunk(
             console.log("SiginIn Responese on refresh =>", response)
             return await response;
         }
-        else if (data === 'Logout') {
-            let response = await Logout();
+        else if (data.logout === 'Logout') {
+            let response = await Logout(data.uid);
             console.log("LogOut Responese =>", response)
             return await response;
         }

@@ -24,12 +24,15 @@ export async function Register(user) {
             })
                 .then(() => {
                     // if you here successfuly nme updated
-                    db.collection('user').add({
-                        firstName: user.fname,
-                        lastName: user.lname,
-                        uid: data.user.uid,
-                        createdAt: new Date()
-                    })
+                    db.collection('user')
+                        .doc(data.user.uid)
+                        .set({
+                            firstName: user.fname,
+                            lastName: user.lname,
+                            uid: data.user.uid,
+                            createdAt: new Date(),
+                            isOnline: false
+                        })
                         .then(() => {
                             //successfull
                             const loggedInUser = {

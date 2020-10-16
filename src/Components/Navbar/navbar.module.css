@@ -4,15 +4,17 @@
     background-color: #8E44AD;
     display: flex;
     justify-content: space-between;
-    padding: 18px;
+    padding: 14px;
     color: white;
     font-size: 20px;
 }
 
-.Appname{
+.Appname {
     font-family: 'Lobster', cursive;
     font-weight: bold;
+    /* width: 100px; */
 }
+
 .UserName{
     font-family: 'Noto Serif', serif;
 }
