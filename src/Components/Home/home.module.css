@@ -9,13 +9,11 @@ body{
     
 }
 .userlist{
-    width: 30%;
-   
+    width: 30%;  
 }
-
 .userContainer{
     overflow-y: auto;
-    height: 400px;
+    height: 73vh;
 }
 .message{
     width: 70%;
@@ -44,6 +42,7 @@ body{
 .search:hover,.textArea:hover{
     border: 2px solid #8E44AD;
 }
+
 .hrtag{
     text-align: center;
     margin: 8px 20px 8px 20px; 
@@ -62,7 +61,7 @@ body{
 }
 .users{
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -70,18 +69,25 @@ body{
     background-color: rgb(243, 231, 243) !important;
    
 }
-.users:hover > .usersName{
+.nameandonline{
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}
+.users:hover > .nameandonline > .usersName{
     color: black;
     font-weight: bolder !important;
     
 }
-.UserImage{
 
+.UserImage{
+    margin-right: 16px;
     border-radius: 50%;
     width: 60px;
+    height: 60px;
 }
 .usersonline{
-    margin-top: 20px;
+    margin-top: 22px;
     font-family: 'Martel', serif;
     color: gray;
 }
@@ -182,7 +188,7 @@ body{
 }
 .textArea{
     margin-top: 10px;
-    padding: 7px;
+    padding: 10px;
     width: 95%;
     border-radius: 20px;
     font-family: 'Martel', serif;
@@ -197,3 +203,21 @@ body{
     margin-top: 12px;
 }
 
+  .loading{
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 80px !important;
+}
+
+.displaylogo{
+    margin-top: 150px;
+    display: flex;
+    justify-content: center;
+}
+.displaylogo img{
+    width:450px;
+    opacity: 0.5;
+}
+@media screen and (max-width: 480px) {
+    
+}

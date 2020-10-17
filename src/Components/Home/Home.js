@@ -5,11 +5,15 @@ import Paper from '@material-ui/core/Paper';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import SearchIcon from '@material-ui/icons/Search';
 import SendIcon from '@material-ui/icons/Send';
-import { UserList } from '../../Services/UserList'
 import { UserListData, userlist } from '../../Reducer/UserlistSlice'
 import { signinData } from '../../Reducer/signinSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth, firestore } from 'firebase';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { UserlistHome } from './Userlist'
+import Logo from '../../Assests/Logo.png';
+import { Message } from '../../Services/Message';
+import { messagelist, MessageListData } from '../../Reducer/MessageSlice';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -27,14 +31,29 @@ const useStyles = makeStyles((theme) => ({
 
 export const Home = () => {
     const [msg, setMsg] = useState('')
+    const [openchatuser, setopenchatuser] = useState('')
+    const [display, setDisplay] = useState(false)
+    const [user_uid_2, set_user_uid_2] = useState('');
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = useSelector(userlist);
     const siginuser = useSelector(signinData);
+    const messages = useSelector(messagelist)
+
     const HandleForm = (e) => {
         e.preventDefault();
         console.log(msg)
+
+        let msgObj = {
+            user_uid_1: siginuser.uid,
+            user_uid_2,
+            message: msg
+        }
+        console.log(msgObj)
+        Message(msgObj);
+        setMsg('')
     }
+
     useEffect(() => {
         async function getlist() {
             const db = firestore();
@@ -51,11 +70,37 @@ export const Home = () => {
         }
         getlist();
     }, [])
-    console.log('userlist agai', user.userList)
-    console.log('userlist agai data', siginuser)
+
+    useEffect(() => {
+        async function getmessagelist(userObj) {
+            const db = firestore();
+            await db.collection('conversation')
+                .where('user_uid_1', 'in', [userObj.uid_1, userObj.uid_2])
+                .orderBy('createdAt','desc')
+                .onSnapshot(function (data) {
+                    const conversation = [];
+                    data.forEach((obj) => {
+                        if (
+                            (obj.data().user_uid_1 === userObj.uid_1 && obj.data().user_uid_2 === userObj.uid_2)
+                            || (obj.data().user_uid_1 === userObj.uid_2 && obj.data().user_uid_2 === userObj.uid_1)
+                        ) {
+                            conversation.push(obj.data());
+                        }
+                    })
+                    console.log("=>>>>>", conversation)
+                    dispatch(MessageListData(conversation));
+                })
+        }
+        getmessagelist({ uid_1: siginuser.uid, uid_2: user_uid_2 });
+    }, [user_uid_2])
+
+    console.log(messages)
+
     if (user.loading) {
         return (
-            <h2>Loading....</h2>
+            <div className={style.loading}>
+                <CircularProgress style={{ color: '#8E44AD', fontWeight: 'bolder' }} />
+            </div>
         )
     }
     return (
@@ -78,24 +123,15 @@ export const Home = () => {
                             user.userList.map((obj) => {
                                 if (siginuser.uid !== obj.uid) {
                                     return (
-                                        <div key={obj.uid} className={style.mapdiv}>
-                                            <div className={style.users} >
-                                                <img src={'https://www.w3schools.com/howto/img_avatar.png'} className={style.UserImage} />
-
-                                                <div className={style.usersName}>
-                                                    {`${obj.firstName} ${obj.lastName}`}
-                                                </div>
-                                                <div className={style.usersonline}>
-                                                    {
-                                                        obj.isOnline ? <span> </span> : null
-                                                    }
-                                                </div>
-                                            </div>
-                                            <div className={style.hrtag}></div>
-                                        </div>
+                                        <UserlistHome
+                                            key={obj.uid}
+                                            obj={obj}
+                                            name={setopenchatuser}
+                                            show={setDisplay}
+                                            set_user_uid_2={set_user_uid_2}
+                                        />
                                     )
                                 }
-
                             })
                         }
 
@@ -105,57 +141,61 @@ export const Home = () => {
                 <div className={style.vl}></div>
 
                 <div className={style.message}>
-                    <Paper className={style.openchat}> Ali </Paper>
+                    {
+                        display ?
+                            <Paper className={style.openchat}> {openchatuser} </Paper>
+                            : null
+                    }
+                    {
+                        display ?
+                            <div className={style.messagesection}>
+                                <div className={style.chatcontainer}>
+                                    
+                                    {
+                                        
+                                            messages.loading  ?
+                                             <h3>Loading</h3>:
+                                        messages.messagelist.map((obj, index) => {
+                                            
+                                            return (
+                                                <div key={index} className={obj.user_uid_2 === user_uid_2 ? style.mymsg : style.yourmsg}>
+                                                    <span>{obj.message}</span>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                            : null
+                    }
 
 
-                    <div className={style.messagesection}>
-                        <div className={style.chatcontainer}>
-                            <div className={style.mymsg}>
-                                <span>A message text</span>
+                    {
+                        display ?
+                            <form onSubmit={HandleForm} className={style.formdiv}>
+                                <TextareaAutosize
+                                    className={style.textArea}
+                                    rowsMax={2}
+                                    aria-label="maximum height"
+                                    placeholder="Enter..."
+                                    value={msg}
+                                    required
+                                    onChange={(e) => {
+                                        setMsg(e.target.value)
+                                    }}
+                                />
+                                <button
+                                    className={style.btn}
+                                    type='submit'
+                                >
+                                    <SendIcon style={{ color: '#8E44AD' }} />
+                                </button>
+                            </form>
+                            : <div className={style.displaylogo}>
+                                <img src={Logo} alt='Logo' />
                             </div>
-                            <div className={style.mymsg}>
-                                <span>A message text</span>
-                            </div>
-                            <div className={style.mymsg}>
-                                <span>A message text</span>
-                            </div>
-                            <div className={style.yourmsg}>
-                                <span>A message text A message text A message text A message text A message text A message text A message text A message text A message text A message text </span>
-                            </div>
-                            <div className={style.yourmsg}>
-                                <span>A message text</span>
-                            </div>
-                            <div className={style.mymsg}>
-                                <span>A message text</span>
-                            </div>
-                            <div className={style.mymsg}>
-                                <span>A message text</span>
-                            </div>
-                            <div className={style.mymsg}>
-                                <span>A message text</span>
-                            </div>
-                        </div>
-                    </div>
+                    }
 
-                    <form onSubmit={HandleForm} className={style.formdiv}>
-                        <TextareaAutosize
-                            className={style.textArea}
-                            rowsMax={3}
-                            aria-label="maximum height"
-                            placeholder="Enter..."
-                            value={msg}
-                            required
-                            onChange={(e) => {
-                                setMsg(e.target.value)
-                            }}
-                        />
-                        <button
-                            className={style.btn}
-                            type='submit'
-                        >
-                            <SendIcon style={{ color: '#8E44AD' }} />
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>

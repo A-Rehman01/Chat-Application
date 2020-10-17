@@ -18,7 +18,7 @@ export async function Register(user) {
             feedback.uid = data.user.uid
             feedback.email = user.email
             const currentUser = auth().currentUser;
-            var name = `${user.fname}${user.lname}`
+            var name = `${user.fname} ${user.lname}`
             currentUser.updateProfile({
                 displayName: name
             })

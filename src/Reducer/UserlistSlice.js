@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { UserList } from '../Services/UserList'
 export const UserListData = createAsyncThunk(
     'getUserlistfromapi',
     async (data, thunkapi) => {

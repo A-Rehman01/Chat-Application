@@ -28,7 +28,8 @@ export const Navbar = () => {
         <div className={style.Container}>
             {/* <div className={style.Appname}>< ChatIcon style={{ fontSize: '34px' }} /></div> */}
             <div className={style.Appname}>
-            chatApp  {/* <img src={Logo}  alt='Logo' width='200px' /> */}
+                chatApp
+            {/* <img src={Logo}  alt='Logo' width='150px' height='20px' /> */}
             </div>
             
 
