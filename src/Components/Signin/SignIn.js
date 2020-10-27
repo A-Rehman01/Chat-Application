@@ -36,13 +36,11 @@ export const SignIn = () => {
 
     let HandleForm = (e) => {
         e.preventDefault();
-        console.log('HandleForm Running...')
         let user = {
             email: Email,
             password: Password
         }
         dispatch(SignInInitialData(user))
-        console.log("Signip => ", data)
     }
     useEffect(() => {
         function removefield() {
@@ -52,7 +50,6 @@ export const SignIn = () => {
                 setEmail('');
                 navigate('/',{replace:true})
             }
-            console.log("SignIn => ", data)
              
         }
         removefield();

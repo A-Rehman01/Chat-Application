@@ -14,7 +14,6 @@ export const Navbar = () => {
     const data = useSelector(signinData)
     const dispatch = useDispatch();
 
-    console.log("navbar  = > ", data);
     
     const ExitToApp = () => {
         const user = {

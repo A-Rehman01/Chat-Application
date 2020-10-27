@@ -129,6 +129,7 @@ export const Home = () => {
                                             name={setopenchatuser}
                                             show={setDisplay}
                                             set_user_uid_2={set_user_uid_2}
+                                            user_uid_2={user_uid_2}
                                         />
                                     )
                                 }

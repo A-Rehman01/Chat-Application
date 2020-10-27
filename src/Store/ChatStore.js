@@ -3,6 +3,7 @@ import AuthSlice from '../Reducer/authSlice'
 import SigninSlice from '../Reducer/signinSlice'
 import UserlistSlice from '../Reducer/UserlistSlice'
 import MessageSlice from '../Reducer/MessageSlice';
+import MessageViewSlice from '../Reducer/MessageView'
 
 // const middleware = getDefaultMiddleware();
 export const ChatStore = configureStore({
@@ -11,7 +12,8 @@ export const ChatStore = configureStore({
         auth: AuthSlice,
         signin: SigninSlice,
         userlist:UserlistSlice, 
-        messagelist:MessageSlice
+        messagelist:MessageSlice,
+        messageview:MessageViewSlice
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -79,7 +79,9 @@ body{
     font-weight: bolder !important;
     
 }
-
+.focus{
+    background-color: lightcoral;
+}
 .UserImage{
     margin-right: 16px;
     border-radius: 50%;

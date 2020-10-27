@@ -26,11 +26,9 @@ function App() {
     async function CheckLocalStorage() {
       const data = await IsloggedinUser();
       dispatch(SignInInitialData(data));
-      console.log("app=>",data)
     }
     CheckLocalStorage();
   }, [])
-  console.log("finalapp=>",finaldata)
 
   return (
     <div className="App">
